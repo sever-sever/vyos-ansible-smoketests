@@ -7,3 +7,6 @@
       Hello,
       VyOS World!
     state: present
+  tags:
+    - banner
+    - config

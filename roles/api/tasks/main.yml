@@ -4,3 +4,6 @@
     src: api.j2
     # src: roles/api/templates/api.j2
     # lines: "{{ lookup('template', 'api.j2').split('\n') }}"
+  tags:
+    - api
+    - config

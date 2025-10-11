@@ -5,15 +5,24 @@
     src: ospf.j2
     #lines: "{{ lookup('template', 'ospf.j2').split('\n') }}"
   when: routing.ospf.enable
+  tags:
+    - routing
+    - config
 
 - name: Configure IS-IS
   vyos.vyos.vyos_config:
     src: isis.j2
     #lines: "{{ lookup('template', 'isis.j2').split('\n') }}"
   when: routing.isis.enable
+  tags:
+    - routing
+    - config
 
 - name: Configure BGP
   vyos.vyos.vyos_config:
     src: bgp.j2
     #lines: "{{ lookup('template', 'bgp.j2').split('\n') }}"
   when: routing.bgp.enable
+  tags:
+    - routing
+    - config

@@ -4,3 +4,7 @@
   vyos.vyos.vyos_config:
     src: vpn_ipsec.j2
     #lines: "{{ lookup('template', 'vpn_ipsec.j2').split('\n') }}"
+  tags:
+    - vpn
+    - config
+
