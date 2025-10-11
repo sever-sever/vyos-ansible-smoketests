@@ -1,6 +1,6 @@
 ---
 - name: Run basic op-mode commands
-  vyos_command:
+  vyos.vyos.vyos_command:
     commands:
       - "{{ item }}"
   loop:

@@ -10,6 +10,8 @@
     - interfaces
     - routing
     - bgp_check
+    #- op_basic_check
+    #- op_basic_check2
     - vpn_setup
     - vpn_check
 

@@ -2,7 +2,8 @@
 
 - name: Configure name-servers
   vyos.vyos.vyos_config:
-    src: nameservers.j2
+    # src: nameservers.j2
+    lines: "{{ lookup('template', 'nameservers.j2').split('\n') }}"
 
 #- name: Debug hostvars for r1
 #  debug:
@@ -21,4 +22,4 @@
   vyos.vyos.vyos_config:
     lines:
       - set system option time-format '24-hour'
-  when: hostvars[inventory_hostname].vyos_version == 'rolling'
+#  when: hostvars[inventory_hostname].vyos_version == 'rolling'

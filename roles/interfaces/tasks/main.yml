@@ -2,4 +2,5 @@
 
 - name: Configure interface address
   vyos.vyos.vyos_config:
-    src: interfaces.j2
+    # src: interfaces.j2
+    lines: "{{ lookup('template', 'interfaces.j2').split('\n') }}"

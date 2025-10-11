@@ -2,4 +2,5 @@
 
 - name: Configure DHCP sersver
   vyos.vyos.vyos_config:
-    src: dhcp_server.j2
+    # src: dhcp_server.j2
+    lines: "{{ lookup('template', 'dhcp_server.j2').split('\n') }}"
