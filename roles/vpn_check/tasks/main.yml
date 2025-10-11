@@ -1,5 +1,5 @@
 - name: Check IPsec SAs
-  vyos_command:
+  vyos.vyos.vyos_command:
     commands:
       - show vpn ipsec sa
       - show vpn ipsec status

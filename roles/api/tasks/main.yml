@@ -1,5 +1,4 @@
 ---
-
 - name: Configure API keys
   vyos.vyos.vyos_config:
     src: api.j2

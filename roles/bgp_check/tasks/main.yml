@@ -1,5 +1,5 @@
 - name: Check BGP
-  vyos_command:
+  vyos.vyos.vyos_command:
     commands:
       - show ip bgp sum
   register: bgp_status_output
