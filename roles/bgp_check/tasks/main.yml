@@ -1,0 +1,15 @@
+- name: Check BGP
+  vyos_command:
+    commands:
+      - show ip bgp sum
+  register: bgp_status_output
+
+- name: Fail if BGP is not established
+  fail:
+    msg: "BGP is not established on {{ inventory_hostname }}: {{ vpn_status_output.stdout }}"
+  when: bgp_status_output.stdout | join('\n') is search('error|fail|down|inactive|Traceback')
+  ignore_errors: yes
+
+- name: Display BGP outputs
+  debug:
+    var: bgp_status_output.stdout_lines

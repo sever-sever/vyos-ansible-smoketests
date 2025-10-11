@@ -1,0 +1,6 @@
+{% if routing.bgp.enable %}
+set protocol bgp system-as '{{ routing.bgp.asn }}'
+set protocols bgp neighbor {{ bgp.neighbor }} address-family ipv4-unicast soft-reconfiguration inbound
+set protocols bgp neighbor {{ bgp.neighbor }} description 'conf-by-ansible'
+set protocols bgp neighbor {{ bgp.neighbor }} remote-as '{{ routing.bgp.asn }}'
+{% endif %}

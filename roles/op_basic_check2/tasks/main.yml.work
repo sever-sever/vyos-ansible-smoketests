@@ -1,0 +1,37 @@
+---
+- name: Run basic op-mode commands
+  vyos_command:
+    commands:
+      - show users
+      - show version
+      #- show foo
+      - show version frr
+  register: basic_output
+  tags: show
+
+- name: Fail if any command produced errors
+  fail:
+    msg: "VPN SA not established on {{ inventory_hostname }}: {{ vpn_status_output.stdout }}"
+  #when: (( basic_output.stdout | join('\n')) | lower is search('error|fail|traceback|unable to connect|no such file or directory|pm line')
+  when: basic_output.stdout | join('\n') is search('error|fail|down|inactive|Traceback')
+  tags: show
+
+#- name: Display outputs for all commands
+#  debug:
+#    msg: "Command '{{ item.item }}' output:\n{{ item.stdout[0] }}"
+#  loop: "{{ basic_output.results }}"
+#  tags: show
+
+#- name: Display outputs for all commands (clean)
+#  debug:
+#    msg: |
+#      Command {{ item.item }} output:
+#      {{ item.stdout_lines[0] | join('\n') }}
+#  loop: "{{ basic_output.results }}"
+#  loop_control:
+#    label: "{{ item.item }}"
+#  tags: show
+
+- name: Display outputs
+  debug:
+    var: basic_output.stdout_lines

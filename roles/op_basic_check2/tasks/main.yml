@@ -1,0 +1,33 @@
+---
+- name: Run basic op-mode commands
+  vyos_command:
+    commands: "{{ item }}"
+  loop:
+    - show users
+    - show version
+    - show version frr
+  register: basic_output
+  tags: show
+
+- name: Fail if any command produced errors
+  fail:
+    msg: |
+      Command "{{ item.item }}" failed on {{ inventory_hostname }}!
+      Output:
+      {{ item.stdout | join('\n') }}
+  loop: "{{ basic_output.results }}"
+  when: item.stdout | join('\n') | lower is search('error|fail|down|inactive|traceback')
+  tags: show
+
+#- name: Display outputs for all commands
+#  debug:
+#    msg: |
+#      Command: {{ item.item }}
+#      Output:
+#      {% for line in item.stdout_lines[0] %}
+#      {{ line }}
+#      {% endfor %}
+#  loop: "{{ basic_output.results }}"
+#  loop_control:
+#    label: "{{ item.item }}"
+#  tags: show

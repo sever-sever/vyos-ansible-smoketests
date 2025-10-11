@@ -1,0 +1,28 @@
+---
+
+- hosts: "{{ target_host | default('vyos_hosts') }}"
+  gather_facts: false
+
+  roles:
+    - api
+    - banner
+    - common
+    - interfaces
+    - routing
+    - bgp_check
+    - vpn_setup
+    - vpn_check
+
+
+# Run dhcp-server only on R1
+- hosts: r1
+  gather_facts: false
+  roles:
+    - dhcp-server
+
+# Run op-mode check only on R1
+- hosts: r1
+  gather_facts: false
+  roles:
+    - op_basic_check2
+

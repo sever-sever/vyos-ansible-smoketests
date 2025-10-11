@@ -1,0 +1,16 @@
+---
+
+- name: Configure OSPF
+  vyos.vyos.vyos_config:
+    src: ospf.j2
+  when: routing.ospf.enable
+
+- name: Configure IS-IS
+  vyos.vyos.vyos_config:
+    src: isis.j2
+  when: routing.isis.enable
+
+- name: Configure BGP
+  vyos.vyos.vyos_config:
+    src: bgp.j2
+  when: routing.bgp.enable

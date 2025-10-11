@@ -1,0 +1,5 @@
+---
+
+- name: Configure DHCP sersver
+  vyos.vyos.vyos_config:
+    src: dhcp_server.j2

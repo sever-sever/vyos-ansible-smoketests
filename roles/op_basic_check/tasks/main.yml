@@ -1,0 +1,227 @@
+---
+- name: Run basic op-mode commands
+  vyos_command:
+    commands:
+      - "{{ item }}"
+  loop:
+    - show bfd peer
+    - show bfd peer counters
+    - show bridge
+    - show conntrack table ipv4
+    - show conntrack table ipv6
+    - show conntrack-sync cache
+    - show conntrack-sync statistics
+    - show conntrack-sync status
+    - show date
+    - show date utc
+    - show dhcp client leases
+    - show dhcp server leases
+    - show dhcp server leases pool DHCP
+    - show dhcp server leases pool is
+    - show dhcp server leases pool not
+    - show dhcp server leases pool service
+    - show dhcp server leases sort DHCP
+    - show dhcp server leases sort is
+    - show dhcp server leases sort not
+    - show dhcp server leases sort service
+    - show dhcp server leases state DHCP
+    - show dhcp server leases state is
+    - show dhcp server leases state not
+    - show dhcp server leases state service
+    - show dhcp server statistics
+    - show dhcp server statistics pool DHCP
+    - show dhcp server statistics pool is
+    - show dhcp server statistics pool not
+    - show dhcp server statistics pool service
+    - show dhcpv6 server leases
+    - show dhcpv6 server leases pool DHCPv6
+    - show dhcpv6 server leases pool is
+    - show dhcpv6 server leases pool not
+    - show dhcpv6 server leases pool service
+    - show dhcpv6 server leases sort DHCPv6
+    - show dhcpv6 server leases sort is
+    - show dhcpv6 server leases sort not
+    - show dhcpv6 server leases sort service
+    - show dhcpv6 server leases state DHCPv6
+    - show dhcpv6 server leases state is
+    - show dhcpv6 server leases state not
+    - show dhcpv6 server leases state service
+    - show dns dynamic status
+    - show dns forwarding statistics
+    - show firewall
+    - show firewall group
+    - show firewall ipv4 name foo
+    - show firewall ipv6 name foo
+    - show firewall statistics
+    - show firewall summary
+    - show flow-accounting
+    - show flow-accounting interface eth0
+    - show hardware cpu
+    - show hardware dmi
+    - show hardware mem
+    - show hardware pci
+    - show hardware storage
+    - show hardware usb
+    - show history
+    - show history 2
+    - show history brief
+    - show host date
+    - show host domain
+    - show host lookup 1.1.1.1
+    - show host name
+    - show host os
+    - show interfaces
+    - show interfaces bonding
+    - show interfaces bonding detail
+    - show interfaces bonding slaves
+    - show interfaces bridge
+    - show interfaces bridge detail | head -5
+    - show interfaces counters
+    - show interfaces detail | head -5
+    - show interfaces dummy
+    - show interfaces dummy detail
+    - show interfaces ethernet
+    - show interfaces ethernet detail | head -5
+    - show interfaces ethernet eth0 | head -5
+    - show interfaces ethernet eth0 brief
+    - show interfaces ethernet eth0 physical
+    - show interfaces ethernet eth0 statistics
+    - show interfaces ethernet eth0 transceiver
+    - show interfaces ethernet eth0 vif 5
+    - show interfaces input 
+    - show interfaces input detail
+    - show interfaces l2tpv3
+    - show interfaces l2tpv3 detail
+    - show interfaces loopback
+    - show interfaces loopback detail | head -6
+    - show interfaces openvpn detail
+    - show interfaces pseudo-ethernet
+    - show interfaces summary
+    - show interfaces tunnel
+    - show interfaces vti
+    - show interfaces vxlan
+    - show interfaces wireguard wg999
+    - show interfaces wireless
+    - show interfaces wireless detail
+    - show interfaces wireless info
+    - show ip forwarding
+    - show ip groups
+    - show ipoe-server sessions
+    - show ipoe-server statistics
+    #- show ipv6
+    - show l2tp-server sessions
+    - show l2tp-server statistics
+    - show license
+    - show lldp neighbors
+    - show lldp neighbors detail
+    - show lldp neighbors interface eth0
+    #- show log
+    - show login
+    - show login groups
+    - show login user
+    - show monitoring
+    #- show mpls
+    - show nat destination rules
+    - show nat destination statistics
+    - show nat destination translations
+    - show nat destination translations address 1.1.1.1
+    - show nat source rules
+    - show nat source statistics
+    - show nat source translations
+    - show nat source translations address 1.1.1.1
+    - show ntp
+    - show ntp activity
+    - show policy
+    - show policy route
+    - show policy route statistics
+    - show policy route6 statistics
+    - show poweroff
+    - show pppoe-server interfaces
+    - show pppoe-server sessions
+    - show pppoe-server statistics
+    - show pptp-server sessions
+    - show pptp-server statistics
+    - show protocols static arp
+    - show protocols static arp interface eth0
+    - show reboot
+    - show route-map
+    - show rpki cache-connection
+    - show rpki cache-server
+    - show rpki prefix-table
+    - show snmp mib ifmib
+    - show snmp v3
+    - show snmp v3 certificates
+    - show snmp v3 group
+    - show snmp v3 trap-target
+    - show snmp v3 user
+    - show snmp v3 view
+    - show sstp-server sessions
+    - show sstp-server statistics
+    - show system acceleration qat
+    - show system acceleration qat interrupts
+    - show system acceleration qat status
+    - show system commit
+    - show system connections | no-more
+    - show system image
+    - show system image details
+    #- show system integrity
+    #- show system kernel-messages
+    - show system login users
+    - show system login users all
+    - show system login users locked
+    - show system login users other
+    - show system login users vyos
+    - show system memory
+    - show system memory cache
+    - show system memory detail
+    - show system memory routing-daemons
+    - show system processes
+    - show system processes extensive
+    - show system processes summary
+    - show system processes tree
+    - show system routing-daemons
+    - show system storage
+    - show system uptime
+    - show table
+    #- show tech-support
+    - show users
+    - show users recent
+    - show version
+    #- show version all
+    - show version funny
+    - show version frr
+    #- show vpn debug
+    - show vpn ike sa
+    - show vpn ike secrets
+    - show vpn ike status
+    - show vpn ipsec policy
+    - show vpn ipsec sa
+    - show vpn ipsec sa detail
+    - show vpn ipsec state
+    - show vpn ipsec status
+    - show vpn ipsec remote-access
+    - show vrf
+    - show vrf foo
+    - show vrrp
+    - show vrrp detail
+    - show wan-load-balance
+    - show wan-load-balance connection
+    - show wan-load-balance status
+  register: basic_output
+  tags: show
+
+- name: Fail if any command produced errors
+  fail:
+    msg: |
+      Command "{{ item.item }}" failed!
+      Output:
+      {{ item.stdout[0] }}
+  loop: "{{ basic_output.results }}"
+  when: item.stdout[0] | lower is search('(^error|^fail|traceback|unable to connect|no such file or directory|pm line)')
+  tags: show
+
+- name: Display outputs for all commands
+  debug:
+    msg: "Command '{{ item.item }}' output:\n{{ item.stdout[0] }}"
+  loop: "{{ basic_output.results }}"
+  tags: show

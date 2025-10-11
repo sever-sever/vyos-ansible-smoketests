@@ -1,0 +1,26 @@
+set vpn ipsec authentication psk PSK id {{ vpn_ipsec.local_id }}
+set vpn ipsec authentication psk PSK id {{ vpn_ipsec.remote_id }}
+set vpn ipsec authentication psk PSK secret '{{ vpn_ipsec.psk }}'
+set vpn ipsec esp-group ESP-group lifetime 3600
+set vpn ipsec esp-group ESP-group mode 'tunnel'
+set vpn ipsec esp-group ESP-group pfs 'enable'
+set vpn ipsec esp-group ESP-group proposal 1 encryption aes256
+set vpn ipsec esp-group ESP-group proposal 1 hash sha1
+set vpn ipsec ike-group IKE-group key-exchange ikev2
+set vpn ipsec ike-group IKE-group lifetime 28800
+set vpn ipsec ike-group IKE-group proposal 1 encryption aes256
+set vpn ipsec ike-group IKE-group proposal 1 hash sha1
+set vpn ipsec interface {{ vpn_ipsec.interface }}
+set vpn ipsec site-to-site peer {{ vpn_ipsec.peer }} authentication local-id {{ vpn_ipsec.local_id }}
+set vpn ipsec site-to-site peer {{ vpn_ipsec.peer }} authentication mode 'pre-shared-secret'
+set vpn ipsec site-to-site peer {{ vpn_ipsec.peer }} authentication remote-id {{ vpn_ipsec.remote_id }}
+set vpn ipsec site-to-site peer {{ vpn_ipsec.peer }} connection-type '{{ vpn_ipsec.connection_type }}'
+set vpn ipsec site-to-site peer {{ vpn_ipsec.peer }} ike-group IKE-group
+set vpn ipsec site-to-site peer {{ vpn_ipsec.peer }} local-address {{ vpn_ipsec.local_id }}
+set vpn ipsec site-to-site peer {{ vpn_ipsec.peer }} remote-address {{ vpn_ipsec.remote_id }}
+
+{% for tunnel in vpn_ipsec.tunnels %}
+set vpn ipsec site-to-site peer {{ vpn_ipsec.peer }} tunnel {{ tunnel.name }} esp-group ESP-group
+set vpn ipsec site-to-site peer {{ vpn_ipsec.peer }} tunnel {{ tunnel.name }} local prefix {{ tunnel.local_subnet }}
+set vpn ipsec site-to-site peer {{ vpn_ipsec.peer }} tunnel {{ tunnel.name }} remote prefix {{ tunnel.remote_subnet }}
+{% endfor %}
