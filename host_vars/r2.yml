@@ -1,11 +1,11 @@
 router_id: "{{ r2_eth1_ip }}"
 
 interfaces:
-  - name: eth0
-    address: "{{ r2_eth0_ip }}"
-    prefix: 24
-    description: WAN
-    type: ethernet
+#  - name: eth0
+#    address: "{{ r2_eth0_ip }}"
+#    prefix: 24
+#    description: WAN
+#    type: ethernet
 
   - name: eth1
     address: "{{ r2_eth1_ip }}"
