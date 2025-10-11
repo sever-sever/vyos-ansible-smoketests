@@ -1,6 +1,6 @@
 ---
 - name: Configure API keys
   vyos.vyos.vyos_config:
-    # src: api.j2
+    src: api.j2
     # src: roles/api/templates/api.j2
-    lines: "{{ lookup('template', 'api.j2').split('\n') }}"
+    # lines: "{{ lookup('template', 'api.j2').split('\n') }}"

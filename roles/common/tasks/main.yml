@@ -2,8 +2,8 @@
 
 - name: Configure name-servers
   vyos.vyos.vyos_config:
-    # src: nameservers.j2
-    lines: "{{ lookup('template', 'nameservers.j2').split('\n') }}"
+    src: nameservers.j2
+    # lines: "{{ lookup('template', 'nameservers.j2').split('\n') }}"
 
 #- name: Debug hostvars for r1
 #  debug:
