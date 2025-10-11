@@ -6,7 +6,7 @@
 
 - name: Fail if BGP is not established
   fail:
-    msg: "BGP is not established on {{ inventory_hostname }}: {{ vpn_status_output.stdout }}"
+    msg: "BGP is not established on {{ inventory_hostname }}: {{ bgp_status_output.stdout }}"
   when: bgp_status_output.stdout | join('\n') is search('error|fail|down|inactive|Traceback')
   ignore_errors: yes
 
