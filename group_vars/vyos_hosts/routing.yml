@@ -4,7 +4,8 @@ routing:
     enable: true
     asn: 65001
   ospf:
-    enable: false
+    enable: true
+    network: 10.0.2.0/24
     area: 0
   isis:
     enable: true

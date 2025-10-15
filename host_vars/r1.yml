@@ -21,7 +21,7 @@ interfaces:
 
 ospf:
   networks:
-    - 192.0.2.0/24
+    - "{{ routing.ospf.network }}"
     - "{{ r1_dum0_ip }}/32"
 
 isis:

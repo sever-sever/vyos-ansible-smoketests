@@ -1,0 +1,28 @@
+---
+
+shared_networks:
+  - name: NET-11
+    dhcp_interface: eth1
+    vlan_id: 11
+    subnet:
+      network: 10.0.11.0
+      prefix: 24
+      gateway: 10.0.11.1
+      id: 1
+    dhcp_range:
+      name: R1
+      start_ip: 10.0.11.10
+      stop_ip: 10.0.11.254
+
+  - name: NET-12
+    dhcp_interface: eth1
+    vlan_id: 12
+    subnet:
+      network: 10.0.12.0
+      prefix: 24
+      gateway: 10.0.12.1
+      id: 2
+    dhcp_range:
+      name: R1
+      start_ip: 10.0.12.10
+      stop_ip: 10.0.12.254
