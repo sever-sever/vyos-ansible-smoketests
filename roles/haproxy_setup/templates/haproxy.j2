@@ -1,0 +1,18 @@
+{# Frontends #}
+{% for front in haproxy.frontend %}
+set load-balancing haproxy service {{ front.name }} port '{{ front.port }}'
+set load-balancing haproxy service {{ front.name }} backend '{{ front.backend }}'
+{%     if front.listen_addresses is defined %}
+{%         for addr in front.listen_addresses %}
+set load-balancing haproxy service {{ front.name }} listen-address {{ addr }}
+{%         endfor %}
+{%     endif %}
+{% endfor %}
+
+{# Backends and servers #}
+{% for be in haproxy.backend %}
+{%     for srv in be.servers %}
+set load-balancing haproxy backend {{ be.name }} server {{ srv.name }} address '{{ srv.address }}'
+set load-balancing haproxy backend {{ be.name }} server {{ srv.name }} port '{{ srv.port }}'
+{%     endfor %}
+{% endfor %}

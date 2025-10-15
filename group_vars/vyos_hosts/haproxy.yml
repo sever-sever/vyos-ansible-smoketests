@@ -1,0 +1,19 @@
+---
+haproxy:
+  frontend:
+    - name: fr-01
+      port: 80
+      backend: bk-01
+
+    - name: fr-02
+      port: 81
+      listen_addresses: 
+        - 127.0.0.1
+      backend: bk-01
+
+  backend:
+    - name: bk-01
+      servers:
+       - name: sr-01
+         address: 192.0.2.5
+         port: 8888

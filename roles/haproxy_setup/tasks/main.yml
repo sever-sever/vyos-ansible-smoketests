@@ -1,10 +1,9 @@
 ---
 
-- name: Configure VPN IPsec
+- name: Configure HAProxy
   vyos.vyos.vyos_config:
-    src: vpn_ipsec.j2
-    #lines: "{{ lookup('template', 'vpn_ipsec.j2').split('\n') }}"
+    src: haproxy.j2
   tags:
-    - vpn
+    - haproxy
     - config
 
