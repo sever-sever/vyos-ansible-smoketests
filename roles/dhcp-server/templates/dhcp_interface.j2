@@ -1,0 +1,3 @@
+{% for net in shared_networks %}
+set interfaces ethernet {{ net.dhcp_interface }}{{ ' vif ' + net.vlan_id|string if net.vlan_id is defined else '' }} address '{{ net.subnet.gateway }}/{{ net.subnet.prefix }}'
+{% endfor %}

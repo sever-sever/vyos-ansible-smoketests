@@ -1,0 +1,30 @@
+- name: Check IPsec SAs
+  vyos.vyos.vyos_command:
+    commands:
+      - show vpn ipsec sa
+      - show vpn ipsec status
+      - show vpn ipsec connections
+  register: vpn_status_output
+  tags:
+    - vpn
+    - vpn_show
+    - show
+
+
+- name: Fail if VPN is not established
+  fail:
+    msg: "VPN SA not established on {{ inventory_hostname }}: {{ vpn_status_output.stdout }}"
+  when: vpn_status_output.stdout | join('\n') is search('error|fail|down|inactive|Traceback')
+  ignore_errors: yes
+  tags:
+    - vpn
+    - vpn_show
+    - show
+
+- name: Display VPN outputs
+  debug:
+    var: vpn_status_output.stdout_lines
+  tags:
+    - vpn
+    - vpn_show
+    - show

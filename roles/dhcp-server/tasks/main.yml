@@ -1,6 +1,13 @@
 ---
 
-- name: Configure DHCP sersver
+- name: Configure IP for DHCP server
+  vyos.vyos.vyos_config:
+    src: dhcp_interface.j2
+  tags:
+    - dhcp_server
+    - config
+
+- name: Configure DHCP server
   vyos.vyos.vyos_config:
     src: dhcp_server.j2
     # lines: "{{ lookup('template', 'dhcp_server.j2').split('\n') }}"
