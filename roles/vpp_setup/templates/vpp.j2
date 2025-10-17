@@ -1,0 +1,7 @@
+{% for iface in vpp.interfaces %}
+{%    if iface.type == 'ethernet' %}
+set vpp settings interface {{ iface.name }} driver '{{ iface.driver }}'
+{%    endif %}
+{% endfor %}
+
+set vpp settings unix poll-sleep-usec '{{ vpp.settings.poll_sleep_usec }}'

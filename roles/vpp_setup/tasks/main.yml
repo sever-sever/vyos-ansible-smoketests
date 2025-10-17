@@ -1,0 +1,9 @@
+---
+
+- name: Configure VPP interfaces
+  vyos.vyos.vyos_config:
+    src: vpp.j2
+  tags:
+    - vpp
+    - config
+

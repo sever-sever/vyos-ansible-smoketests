@@ -1,0 +1,13 @@
+---
+vpp:
+  interfaces:
+    - name: eth1
+      driver: dpdk
+      type: ethernet
+
+    - name: eth2
+      driver: dpdk
+      type: ethernet
+
+  settings:
+    poll_sleep_usec: 2222
